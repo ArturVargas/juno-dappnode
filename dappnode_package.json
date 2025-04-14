@@ -1,6 +1,6 @@
 {
   "name": "juno.public.dappnode.eth",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "shortDescription": "StarkNet full node",
   "description": "Nethermind Starknet Node Client Juno",
   "type": "service",
