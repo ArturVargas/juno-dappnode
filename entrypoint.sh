@@ -25,6 +25,9 @@ ethnode=""
 if [ -n "$ETH_L1_RPC_URL" ]; then
   echo "Using Ethereum node to verify the state on L1."
   ethnode="--eth-node $ETH_L1_RPC_URL"
+else
+  echo "L1 verification is disabled."
+  ethnode="--disable-l1-verification"
 fi
 
 juno \
