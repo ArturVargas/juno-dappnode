@@ -1,0 +1,83 @@
+version: "2"
+fields:
+  - id: network
+    target:
+      type: environment
+      name: NETWORK
+    title: "Starknet Network"
+    description: |
+      Choose the Starknet network to sync with:
+      
+      - **mainnet**: Production network (~200GB storage needed)
+      - **sepolia**: Testnet for development (~20GB storage needed)
+    type: select
+    enum:
+      - "mainnet"
+      - "sepolia"
+    default: "mainnet"
+    required: true
+
+  - id: enableStaking
+    target:
+      type: environment
+      name: ENABLE_STAKING
+    title: "Enable Validator Staking"
+    description: |
+      Enable Starknet validator staking functionality.
+      
+      **Requirements:**
+      - Minimum 20,000 STRK tokens
+      - Validator private key file
+      - Ethereum L1 node connection (for verification)
+      
+      **Warning:** This is advanced functionality for experienced validators only.
+    type: boolean
+    default: false
+
+  - id: validatorKeyFile
+    target:
+      type: environment
+      name: VALIDATOR_KEY_FILE
+    title: "Validator Private Key File"
+    description: |
+      Path to your validator private key file.
+      
+      **Important:** Place your key file in the `/var/lib/juno/keys/` directory first.
+      The file should contain your validator's private key in hexadecimal format.
+    type: text
+    placeholder: "/var/lib/juno/keys/validator.key"
+    if:
+      enableStaking: true
+    required: false
+
+  - id: validatorGraffiti
+    target:
+      type: environment
+      name: VALIDATOR_GRAFFITI
+    title: "Validator Graffiti"
+    description: |
+      Custom message to include in blocks you validate.
+      
+      This will appear publicly on the blockchain as your validator's signature.
+      Keep it short and professional.
+    type: text
+    default: "DappNode"
+    if:
+      enableStaking: true
+
+  - id: customSnapshot
+    target:
+      type: environment
+      name: SNAPSHOT_URL
+    title: "Custom Snapshot URL (Advanced)"
+    description: |
+      Override the default snapshot URL for faster initial sync.
+      
+      **Default snapshots:**
+      - Mainnet: ~200GB from Nethermind
+      - Sepolia: ~20GB from Nethermind
+      
+      Leave empty to use official Nethermind snapshots.
+    type: text
+    placeholder: "https://juno-snapshots.nethermind.io/files/mainnet/latest"
+    required: false

@@ -1,21 +1,25 @@
 {
   "name": "juno.public.dappnode.eth",
-  "version": "2.0.2",
-  "shortDescription": "StarkNet full node",
-  "description": "Nethermind Starknet Node Client Juno",
+  "version": "2.1.0",
+  "upstreamVersion": "v0.15.0",
+  "upstreamRepo": "NethermindEth/juno",
+  "upstreamTag": "v0.15.0",
+  "shortDescription": "Starknet Full Node with Staking v2 Support",
+  "description": "Nethermind Juno is a Go implementation of a Starknet full-node client. This package supports both regular full node operation and Starknet validator staking with the latest v2 protocol including block attestation and performance metrics.",
   "type": "service",
   "author": "Artur Vargas <arturvargas9226@gmail.com> (https://github.com/ArturVargas)",
   "contributors": [
     "Artur Vargas <arturvargas9226@gmail.com> (https://github.com/ArturVargas)",
     "Louis Garoche <louis@garoche.me> (https://github.com/lgaroche)"
   ],
-  "categories": ["Developer tools"],
-  "keywords": ["starknet", "starkware", "nethermind"],
+  "categories": ["Blockchain", "Starknet"],
+  "keywords": ["starknet", "juno", "nethermind", "fullnode", "staking", "validator"],
   "architectures": ["linux/amd64", "linux/arm64"],
   "links": {
-    "homepage": "https://github.com/ArturVargas/juno-dappnode#readme",
+    "homepage": "https://juno.nethermind.io/",
+    "ui": "http://juno.public.dappnode:6060/",
     "api": "http://juno.public.dappnode:6060/",
-    "websocket": "ws://juno.public.dappnode:6061/"
+    "gateway": "ws://juno.public.dappnode:6061/"
   },
   "repository": {
     "type": "git",
@@ -24,14 +28,25 @@
   "license": "GPL-3.0",
   "exposable": [
     {
-      "name": "StarkNet RPC",
-      "description": "JSON RPC endpoint for StarkNet",
+      "name": "Starknet RPC",
+      "description": "JSON-RPC endpoint for Starknet",
       "port": 6060
     },
     {
-      "name": "StarkNet WebSocket",
-      "description": "WebSocket RPC endpoint for StarkNet",
+      "name": "Starknet WebSocket",
+      "description": "WebSocket RPC endpoint for Starknet",
       "port": 6061
+    },
+    {
+      "name": "Validator Metrics",
+      "description": "Prometheus metrics for validator performance",
+      "port": 9090
+    }
+  ],
+  "backup": [
+    {
+      "name": "juno_data",
+      "path": "/var/lib/juno"
     }
   ]
 }

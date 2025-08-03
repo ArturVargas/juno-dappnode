@@ -4,24 +4,41 @@ services:
     build:
       context: .
       args:
-        UPSTREAM_VERSION: v0.15.0-rc.4
-    image: juno.public.dappnode.eth:2.0.0
+        UPSTREAM_VERSION: v0.15.0
+    image: juno.public.dappnode.eth:2.1.0
     security_opt:
       - seccomp:unconfined
     ports:
       - "6060:6060"
       - "6061:6061"
+      - "9090:9090"
     environment:
+      NETWORK: "mainnet"
       ETH_L1_RPC_URL: http://execution.mainnet.staker.dappnode:8545
       SNAPSHOT_URL: https://juno-snapshots.nethermind.io/files/mainnet/latest
-      NETWORK: mainnet
       ENABLE_WS: true
       WS_PORT: 6061
       WS_HOST: 0.0.0.0
+      ENABLE_STAKING: "false"
+      VALIDATOR_KEY_FILE: ""
+      VALIDATOR_GRAFFITI: "DappNode Validator"
+      ENABLE_METRICS: "true"
+      METRICS_PORT: "9090"
+      METRICS_HOST: "0.0.0.0"
+      LOG_LEVEL: "info"
       EXTRA_OPTS: ""
     volumes:
       - juno_data:/var/lib/juno
+      - juno_keys:/var/lib/juno/keys
     restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:6060/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
 
 volumes:
   juno_data: {}
+  juno_keys: {}
