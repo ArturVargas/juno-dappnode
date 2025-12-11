@@ -4,8 +4,8 @@
   "shortDescription": "StarkNet full node",
   "links": {
     "homepage": "https://github.com/dappnode/DAppNodePackage-juno-generic#readme",
-    "api": "http://juno.dappnode:6070/",
-    "websocket": "ws://juno.dappnode:6071/"
+    "api": "http://juno.dappnode:6060/",
+    "websocket": "ws://juno.dappnode:6061/"
   },
   "exposable": [
     {

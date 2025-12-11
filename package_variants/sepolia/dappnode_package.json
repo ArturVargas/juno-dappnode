@@ -4,19 +4,19 @@
   "shortDescription": "StarkNet full node in Sepolia",
   "links": {
     "homepage": "https://github.com/dappnode/DAppNodePackage-juno-generic#readme",
-    "api": "http://juno-sepolia.dappnode:6070/",
-    "websocket": "ws://juno-sepolia.dappnode:6071/"
+    "api": "http://juno-sepolia.dappnode:6060/",
+    "websocket": "ws://juno-sepolia.dappnode:6061/"
   },
   "exposable": [
     {
       "name": "StarkNet RPC",
       "description": "JSON RPC endpoint for StarkNet Sepolia",
-      "port": 6070
+      "port": 6060
     },
     {
       "name": "StarkNet WebSocket",
       "description": "WebSocket RPC endpoint for StarkNet Sepolia",
-      "port": 6071
+      "port": 6061
     }
   ]
 }
